@@ -1,0 +1,7 @@
+{
+  "name": "ewp-methodology",
+  "version": "1.0.0",
+  "description": "EWP Methodology Specification & Authorship Record",
+  "scripts": { "start": "serve . -l $PORT -s" },
+  "dependencies": { "serve": "^14.0.0" }
+}

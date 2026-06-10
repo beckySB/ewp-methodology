@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EWP Methodology Specification &amp; Authorship Record</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2E4A;
+      --navy-light: #243B5A;
+      --gold: #C9A962;
+      --gold-20: rgba(201,169,98,0.20);
+      --gold-40: rgba(201,169,98,0.40);
+      --gold-50: rgba(201,169,98,0.50);
+      --gold-60: rgba(201,169,98,0.60);
+      --gold-80: rgba(201,169,98,0.80);
+      --cream: #FAF8F5;
+      --cream-light: #FAF6F0;
+      --cream-warm: #F5EFE3;
+      --white: #FFFFFF;
+      --light-teal: #E8F4F6;
+      --teal: #2A7F8C;
+      --teal-deep: #1F5E6A;
+      --text-dark: #1B2E4A;
+      --text-body: #6B6560;
+      --text-body-alt: #5A5550;
+      --text-muted: #8A8580;
+      --text-light: #C8C0B8;
+      --text-cream: #E0DCD6;
+      --border: #E8E2D8;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Nunito', 'Segoe UI', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SECTION BASE ── */
+    .section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .section-cream { background: var(--cream); padding: 100px 120px; }
+    .section-white { background: var(--white); padding: 100px 120px; }
+    .section-cream-warm { background: var(--cream-warm); padding: 100px 120px; border-top: 1px solid var(--border); }
+    .container { max-width: 1200px; width: 100%; }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 32px;
+      line-height: 1.2;
+    }
+    .section-lead {
+      font-size: 18px;
+      color: var(--text-body-alt);
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto 40px auto;
+      line-height: 1.7;
+    }
+    .section-body {
+      font-size: 20px;
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: var(--text-body);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(180deg, #1B2E4AE0 0%, #1B2E4ACC 30%, #1B2E4AB0 50%, #1B2E4A88 70%, #FAF8F5 100%),
+        url('images/hero-bg.png') center/cover no-repeat;
+      padding: 80px 80px;
+      text-align: center;
+    }
+    .hero-content {
+      max-width: 920px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+    .hero-eyebrow-badge {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-40);
+      padding: 10px 28px;
+      border-radius: 4px;
+    }
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: 72px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.15;
+    }
+    .hero-sub {
+      font-size: 21px;
+      color: var(--text-cream);
+      max-width: 740px;
+      line-height: 1.7;
+    }
+    .hero-author {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-author-name {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .hero-author-creds {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+    }
+    .hero-author-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .hero-ornament {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      color: var(--gold-60);
+      letter-spacing: 8px;
+    }
+
+    /* ── PURPOSE CARDS ── */
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+    .purpose-card {
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .purpose-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+    .purpose-card-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .purpose-card-body {
+      font-size: 15px;
+      color: var(--text-body);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* ── CALLOUT (Teal) ── */
+    .callout {
+      background: var(--light-teal);
+      border-left: 4px solid var(--teal);
+      padding: 36px 40px;
+      margin: 32px 0;
+      max-width: 1000px;
+    }
+    .callout-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .callout-heading {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--teal-deep);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .callout-body {
+      font-size: 16px;
+      color: var(--text-body-alt);
+      line-height: 1.7;
+    }
+    .callout-body p { margin-bottom: 12px; }
+    .callout-body p:last-child { margin-bottom: 0; }
+
+    /* ── THESIS BLOCK ── */
+    .thesis-block {
+      background: var(--light-teal);
+      border-left: 4px solid var(--teal);
+      padding: 40px 48px;
+      margin: 0 auto 48px auto;
+      max-width: 1000px;
+    }
+    .thesis-block p {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-style: italic;
+      color: var(--teal-deep);
+      line-height: 1.5;
+    }
+
+    /* ── DISTINGUISHING ITEMS ── */
+    .distinction-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 920px;
+      margin: 0 auto 48px auto;
+    }
+    .distinction-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .distinction-num {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: right;
+    }
+    .distinction-text {
+      font-size: 17px;
+      color: var(--text-body-alt);
+      line-height: 1.7;
+    }
+    .distinction-text strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    /* ── PILLAR SUMMARY LIST ── */
+    .pillar-summary-list {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pillar-summary-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pillar-summary-item:last-child { border-bottom: none; }
+    .pillar-summary-num {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .pillar-summary-text {
+      font-size: 16px;
+      color: var(--text-body-alt);
+      line-height: 1.6;
+    }
+    .pillar-summary-text strong {
+      color: var(--text-dark);
+    }
+
+    /* ── CLAIMS LAYOUT ── */
+    .claims-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin: 32px 0;
+    }
+    .claims-column {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .claims-column-claimed {
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+    }
+    .claims-column-not {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--teal);
+    }
+    .claims-column-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .claims-column ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .claims-column li {
+      font-size: 15px;
+      color: var(--text-body);
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+    }
+    .claims-column-claimed li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+    }
+    .claims-column-not li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal);
+    }
+
+    /* ── FLIP CARDS ── */
+    .pillar-row { margin-bottom: 24px; }
+    .pillar-row-header {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .flip-card {
+      perspective: 1400px;
+      min-height: 380px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    .flip-card.is-flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-face {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .flip-card-front {
+      background: var(--cream-light);
+      border-left: 6px solid var(--navy);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .flip-card-back {
+      background: var(--light-teal);
+      border-left: 6px solid var(--gold);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transform: rotateY(180deg);
+    }
+    .flip-card-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .flip-card-eyebrow-back { color: var(--gold); }
+    .flip-card-title {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+    .flip-card-body {
+      flex: 1;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--text-body-alt);
+      line-height: 1.7;
+    }
+    .flip-card-body p { margin-bottom: 12px; }
+    .flip-card-body p:last-child { margin-bottom: 0; }
+    .flip-card-prompt {
+      font-size: 13px;
+      color: var(--gold);
+      margin-top: 16px;
+      font-weight: 600;
+    }
+    .flip-card-back-section {
+      margin-bottom: 14px;
+    }
+    .flip-card-back-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      margin-bottom: 6px;
+    }
+    .flip-card-back-body {
+      font-size: 14px;
+      color: var(--text-body-alt);
+      line-height: 1.65;
+    }
+    .flip-card-back-body p { margin-bottom: 8px; }
+    .flip-card-back-cadence {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    /* ── EXPANDED CALLOUT (Below Pillar) ── */
+    .pillar-callout {
+      background: var(--light-teal);
+      border-left: 4px solid var(--teal);
+      padding: 36px 40px;
+      margin: 8px 0 32px 0;
+    }
+    .pillar-callout-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--teal-deep);
+      margin-bottom: 16px;
+    }
+    .pillar-callout-body {
+      font-size: 15px;
+      color: var(--text-body-alt);
+      line-height: 1.7;
+    }
+    .pillar-callout-body p { margin-bottom: 12px; }
+    .pillar-callout-body p:last-child { margin-bottom: 0; }
+    .formula-block {
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      color: var(--teal-deep);
+      background: rgba(255,255,255,0.5);
+      padding: 16px 24px;
+      margin: 16px 0;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .threshold-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .threshold-table th {
+      text-align: left;
+      font-weight: 700;
+      color: var(--teal-deep);
+      padding: 10px 16px;
+      border-bottom: 2px solid var(--teal);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .threshold-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(42,127,140,0.2);
+      color: var(--text-body-alt);
+    }
+    .threshold-table td:first-child { font-weight: 600; color: var(--teal-deep); }
+
+    /* ── CONSTRUCT CARDS ── */
+    .construct-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .construct-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 36px 40px;
+      position: relative;
+    }
+    .construct-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+    .construct-card-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .construct-card-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+    .construct-card-body {
+      font-size: 15px;
+      color: var(--text-body);
+      line-height: 1.7;
+    }
+    .construct-card-body p { margin-bottom: 10px; }
+    .construct-card-body p:last-child { margin-bottom: 0; }
+    .construct-card-meta {
+      display: flex;
+      gap: 32px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .construct-card-meta strong { color: var(--text-body-alt); }
+
+    /* ── DELIVERABLE LIST ── */
+    .deliverable-list {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .deliverable-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .deliverable-item:last-child { border-bottom: none; }
+    .deliverable-name {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .deliverable-desc {
+      font-size: 15px;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    /* ── FOUR VERBS ── */
+    .verbs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .verb-card {
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .verb-card-title {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .verb-card-body {
+      font-size: 14px;
+      color: var(--text-body);
+      line-height: 1.65;
+    }
+
+    /* ── NOT-DO CALLOUT ── */
+    .not-do-callout {
+      background: var(--cream-warm);
+      border: 1px solid var(--border);
+      padding: 32px 36px;
+      margin: 0 auto;
+      max-width: 920px;
+    }
+    .not-do-callout-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+    .not-do-callout ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .not-do-callout li {
+      font-size: 15px;
+      color: var(--text-body);
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+    }
+    .not-do-callout li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    /* ── ETA COMPONENTS ── */
+    .eta-list {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .eta-item {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 16px 20px;
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+    }
+    .eta-item-name {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .eta-item-desc {
+      font-size: 14px;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    /* ── INTEGRATION PRINCIPLES ── */
+    .principle-list {
+      max-width: 920px;
+      margin: 0 auto 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .principle-item {
+      padding: 20px 24px;
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--teal);
+    }
+    .principle-item-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--teal-deep);
+      margin-bottom: 8px;
+    }
+    .principle-item-body {
+      font-size: 15px;
+      color: var(--text-body);
+      line-height: 1.65;
+    }
+
+    /* ── DEPENDENCY TABLE ── */
+    .dep-table {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .dep-table th {
+      text-align: left;
+      font-weight: 700;
+      color: var(--navy);
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--navy);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .dep-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .dep-table td:first-child {
+      font-weight: 600;
+      color: var(--text-dark);
+      white-space: nowrap;
+      width: 200px;
+    }
+    .dep-table td:last-child {
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    /* ── QUOTE SECTION ── */
+    .quote-section {
+      background: var(--navy);
+      padding: 100px 160px;
+      gap: 32px;
+    }
+    .quote-deco {
+      font-family: var(--font-heading);
+      font-size: 72px;
+      color: var(--gold-60);
+      line-height: 0.5;
+    }
+    .quote-text {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-style: italic;
+      color: var(--cream);
+      text-align: center;
+      max-width: 900px;
+      line-height: 1.4;
+    }
+    .quote-attribution {
+      font-size: 18px;
+      font-style: italic;
+      color: var(--gold);
+      text-align: center;
+    }
+
+    /* ── CLOSE/AUTHORSHIP ── */
+    .close-section {
+      background:
+        linear-gradient(180deg, rgba(27,46,74,0.92) 0%, rgba(27,46,74,0.96) 100%),
+        url('images/closing-bg.png') center/cover no-repeat;
+      padding: 100px 120px;
+    }
+    .close-ornament {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      color: var(--gold-60);
+      letter-spacing: 8px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .close-heading {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-style: italic;
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 32px;
+      line-height: 1.2;
+    }
+    .close-body {
+      font-size: 18px;
+      color: var(--text-cream);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 32px auto;
+      line-height: 1.7;
+    }
+    .close-author {
+      text-align: center;
+      margin: 48px auto;
+      padding: 32px;
+      border-top: 1px solid var(--gold-20);
+      border-bottom: 1px solid var(--gold-20);
+      max-width: 500px;
+    }
+    .close-author-name {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .close-author-creds {
+      font-size: 14px;
+      font-style: italic;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .close-author-title {
+      font-size: 15px;
+      color: var(--text-cream);
+    }
+    .close-author-date {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+    .close-changes {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .close-changes-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .close-changes ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .close-changes li {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+    }
+    .close-changes li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold-40);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy);
+      padding: 60px 120px;
+      gap: 24px;
+    }
+    .footer-brand {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+    }
+    .footer-divider-sm {
+      width: 60px;
+      height: 1px;
+      background: var(--gold-40);
+    }
+    .footer-divider-full {
+      width: 100%;
+      max-width: 1200px;
+      height: 1px;
+      background: var(--gold-20);
+    }
+    .footer-contact {
+      font-size: 17px;
+      color: rgba(255,255,255,0.69);
+      text-align: center;
+      max-width: 500px;
+    }
+    .footer-tagline {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--gold);
+      text-align: center;
+    }
+    .footer-disclaimer {
+      font-size: 12px;
+      color: rgba(255,255,255,0.38);
+      text-align: center;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { padding: 60px 40px; }
+      .hero-headline { font-size: 48px; }
+      .section-cream, .section-white, .section-cream-warm { padding: 80px 40px; }
+      .quote-section { padding: 60px 40px; }
+      .close-section { padding: 80px 40px; }
+      .purpose-grid { grid-template-columns: 1fr; }
+      .claims-grid { grid-template-columns: 1fr; }
+      .verbs-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-heading { font-size: 36px; }
+      .quote-text { font-size: 24px; }
+      .close-heading { font-size: 36px; }
+      .footer { padding: 60px 40px; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 40px 20px; }
+      .hero-headline { font-size: 36px; }
+      .hero-sub { font-size: 17px; }
+      .section-cream, .section-white, .section-cream-warm { padding: 60px 20px; }
+      .quote-section { padding: 40px 20px; }
+      .close-section { padding: 60px 20px; }
+      .section-heading { font-size: 28px !important; }
+      .close-heading { font-size: 28px; }
+      .verbs-grid { grid-template-columns: 1fr; }
+      .flip-card { min-height: 460px; }
+      .dep-table td:first-child { white-space: normal; width: auto; }
+      .dep-table { font-size: 13px; }
+      .footer { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 01 · ACCESS GATE
+     ════════════════════════════════════════════════════════════════ -->
+<div id="access-gate" style="position:fixed;inset:0;z-index:9999;background:#1B2E4A;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+  <div style="text-align:center;max-width:360px;padding:40px;">
+    <p style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#C9A962;margin-bottom:32px;">Eternal Wealth Partners</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:32px;color:#FAF8F5;margin-bottom:12px;">Access Code</h2>
+    <p style="font-size:15px;color:#8A8580;margin-bottom:28px;">Enter the code to continue.</p>
+    <input id="access-input" type="text" inputmode="numeric" maxlength="4" autocomplete="off" style="width:180px;padding:14px 0;font-family:'Playfair Display',serif;font-size:32px;text-align:center;letter-spacing:12px;background:#243B5A;border:1px solid rgba(201,169,98,0.3);color:#FAF8F5;outline:none;border-radius:4px;">
+    <p id="access-error" style="font-size:13px;color:#D35F5F;margin-top:16px;opacity:0;transition:opacity 0.3s;">Invalid code</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 02 · HERO
+     ════════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow-badge">Eternal Wealth Partners &middot; Methodology Specification &amp; Authorship Record</div>
+    <h1 class="hero-headline">The Seven Pillars.</h1>
+    <p class="hero-sub">The framework for comprehensive business owner wealth planning. The cross-pillar constructs that produce the integrated planning picture. The authorship record for the methodology developed and practiced by Becky Gustafson.</p>
+    <div class="hero-author">
+      <div class="hero-author-name">Rebecca (Becky) Gustafson</div>
+      <div class="hero-author-creds">CFP, MSFP, AEP, CAP, ChFC, CLU, RICP, CASL, LUTCF, CLTC, CEPA</div>
+      <div class="hero-author-meta">Founder, Eternal Wealth Partners &middot; Estate and Business Planning Specialist</div>
+      <div class="hero-author-meta">Date of record: June 08, 2026 &middot; Document version: v2.0</div>
+    </div>
+    <div class="hero-ornament">&mdash; &#10022; &mdash;</div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 03 · PURPOSE
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-cream-warm">
+  <div class="container">
+    <span class="section-label">Purpose of This Document</span>
+    <h2 class="section-heading">Three purposes this document serves.</h2>
+
+    <div class="purpose-grid">
+      <div class="purpose-card">
+        <h3 class="purpose-card-title">Authorship Record</h3>
+        <p class="purpose-card-body">A dated artifact attributable to a single author, capturing the methodology as it exists at this point in its development. Predates any institutional discussion of joint development, licensing, or acquisition.</p>
+      </div>
+      <div class="purpose-card">
+        <h3 class="purpose-card-title">Scope Definition</h3>
+        <p class="purpose-card-body">The boundaries of what is being claimed as proprietary work: the Seven Pillars framework, the named cross-pillar constructs, the deliverable architecture, the wealth-advisor-perspective discipline, Exit Team Alignment, and the integration logic. The boundaries of what is not being claimed: the underlying analytical concepts that exist in the public domain.</p>
+      </div>
+      <div class="purpose-card">
+        <h3 class="purpose-card-title">Technical Reference</h3>
+        <p class="purpose-card-body">A document of sufficient detail that an outside engineer, attorney, or technical partner could understand what the methodology consists of and what a software operating system built to deliver it would need to do.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">What This Document Is Not</div>
+      <div class="callout-body">
+        <p>This is not a patent application. It is not a license. It is not a partnership agreement. It does not assign or transfer any rights in the work described. It does not provide legal, tax, or financial advice. It is a record.</p>
+        <p>The Contnuum platform substrate that operationalizes elements of this methodology in software is a separate work with its own specification and authorship record. This document specifies the methodology that Contnuum is designed to deliver, not Contnuum itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 04 · CENTRAL THESIS
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-white">
+  <div class="container">
+    <span class="section-label">Executive Summary</span>
+    <h2 class="section-heading">The methodology in summary.</h2>
+
+    <div class="thesis-block">
+      <p>The Eternal Wealth Partners methodology is the framework for comprehensive wealth planning for the business owner. The methodology integrates the business and personal dimensions of the owner's financial life across seven analytical pillars. The proprietary claim is the framework: the specific organization of business owner planning into seven coordinated pillars and the deliverable architecture that produces the integrated planning picture.</p>
+    </div>
+
+    <p class="section-lead">The methodology is distinct from general personal financial planning in three respects.</p>
+
+    <div class="distinction-list">
+      <div class="distinction-item">
+        <div class="distinction-num">01</div>
+        <div class="distinction-text"><strong>It treats the business and the personal pictures as one integrated whole, not as adjacent domains.</strong> Every pillar runs the planning question through both the business lens and the personal lens simultaneously, with the owner positioned at the intersection.</div>
+      </div>
+      <div class="distinction-item">
+        <div class="distinction-num">02</div>
+        <div class="distinction-text"><strong>It is structured around the integrated life and exit horizon, not retirement alone.</strong> The standard planning arc anticipates the owner's life through and beyond a liquidity event (sale, transition, succession, ESOP, or family transfer), with retirement planning as one downstream output of the integrated plan rather than the central organizing question.</div>
+      </div>
+      <div class="distinction-item">
+        <div class="distinction-num">03</div>
+        <div class="distinction-text"><strong>It is defined by a deliverable architecture that produces a coherent multi-pillar plan,</strong> rather than a collection of discrete planning conversations across years. The deliverable architecture allows the methodology to be run consistently across advisors, time, and client circumstances.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-heading);font-size:28px;font-weight:700;color:var(--text-dark);text-align:center;margin:48px 0 24px 0;">The Seven Pillars.</h3>
+
+    <div class="pillar-summary-list">
+      <div class="pillar-summary-item">
+        <div class="pillar-summary-num">Pillar 01</div>
+        <div class="pillar-summary-text"><strong>Values, Vision &amp; Purpose.</strong> Discovery of values, articulation of multi-pillar vision, synthesis of the 18-24 Month Purpose Statement, and team alignment. The alignment engine of the methodology.</div>
+      </div>
+      <div class="pillar-summary-item">
+        <div class="pillar-summary-num">Pillar 02</div>
+        <div class="pillar-summary-text"><strong>Cash Flow &amp; Balance Sheet Alignment.</strong> The integrated diagnostic of how cash moves through the business and personal balance sheet, including the Economic Ownership calculation.</div>
+      </div>
+      <div class="pillar-summary-item">
+        <div class="pillar-summary-num">Pillar 03</div>
+        <div class="pillar-summary-text"><strong>Risk &amp; Investment Audit.</strong> The integrated protection picture and investment alignment across personal and business surfaces.</div>
+      </div>
+      <div class="pillar-summary-item">
+        <div class="pillar-summary-num">Pillar 04</div>
+        <div class="pillar-summary-text"><strong>Lifetime Tax-Efficient Strategy.</strong> Multi-decade tax efficiency across the integrated personal and business tax pictures.</div>
+      </div>
+      <div class="pillar-summary-item">
+        <div class="pillar-summary-num">Pillar 05</div>
+        <div class="pillar-summary-text"><strong>Business Valuation.</strong> The wealth-advisor-perspective read of business valuation, including the Margin and Multiplier Sequence diagnostic.</div>
+      </div>
+      <div class="pillar-summary-item">
+        <div class="pillar-summary-num">Pillar 06</div>
+        <div class="pillar-summary-text"><strong>Exit &amp; Transition Planning.</strong> The multi-year roadmap toward the eventual exit, including the Four-Dimension Exit Readiness Assessment.</div>
+      </div>
+      <div class="pillar-summary-item">
+        <div class="pillar-summary-num">Pillar 07</div>
+        <div class="pillar-summary-text"><strong>Legacy &amp; Estate Planning.</strong> The multigenerational destination of the methodology.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 05 · ORIGIN & SCOPE
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-label">Origin, Development &amp; Scope</span>
+    <h2 class="section-heading">Twenty years of field work. One integrated framework.</h2>
+
+    <p class="section-lead">The methodology was developed by Becky Gustafson over approximately twenty years of practice as a financial advisor and estate and business planning specialist, working with high-net-worth and business owner clients. The framework evolved through direct field work with clients in transition: business owners preparing for exits, families navigating multigenerational wealth, executives with concentrated equity compensation, and surviving spouses inheriting both a personal and business picture.</p>
+
+    <p style="font-size:17px;color:var(--text-body);text-align:center;max-width:880px;margin:0 auto 48px auto;line-height:1.7;">The methodology was not adapted from a third-party framework. It was developed in response to the recurring failure modes observed when standard personal financial planning was applied to business owner clients: the planning broke when the client's business was concentrated relative to their personal assets, when the cash flow conversation could not be separated from the business's actual financial picture, when the exit horizon dominated the retirement horizon, and when the integration of personal and business protection was the actual analytical work the client needed but the planning software could not run.</p>
+
+    <div class="claims-grid">
+      <div class="claims-column claims-column-claimed">
+        <h3 class="claims-column-title">What is claimed.</h3>
+        <ul>
+          <li>The Seven Pillars framework: the specific organization into seven interconnected analytical pillars</li>
+          <li>The cross-pillar constructs: Eternal Wealth Snapshot, Eternal Wealth Guardrails, 18-24 Month Purpose Statement, Net-Worth Acceleration Map, Margin and Multiplier Sequence, Post-Exit Wealth Projection, Plan Success Stress-Test, Four-Dimension Exit Readiness Assessment, Economic Ownership</li>
+          <li>The deliverable architecture: the named artifacts and the relationships between them</li>
+          <li>The wealth-advisor-perspective discipline: the structural posture that holds the advisor in the advisor role</li>
+          <li>Exit Team Alignment (ETA): the named coordination layer</li>
+          <li>The integration logic across pillars: the rules and dependencies governing cross-pillar flow</li>
+          <li>The full methodology as a coherent whole</li>
+        </ul>
+      </div>
+      <div class="claims-column claims-column-not">
+        <h3 class="claims-column-title">What is not claimed.</h3>
+        <ul>
+          <li>Underlying financial planning concepts in the public domain (tax frameworks, valuation methodologies, qualified plans, estate vehicles, financial ratios)</li>
+          <li>Industry-standard analytical tools (Monte Carlo simulation generally, present-value calculations, standard tax projections)</li>
+          <li>Third-party products, platforms, or software used to implement the methodology</li>
+          <li>The Exit Planning Institute's Value Acceleration Methodology, Three Gates, Five Value Drivers, Four Intangible Capitals, Triggering Event, Wealth Gap/Value Gap/Profit Gap</li>
+          <li>The general practice of financial planning, business valuation, exit planning, or estate planning</li>
+          <li>The Contnuum platform substrate (separate work, separate specification)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Relationship to Established Industry Frameworks</div>
+      <div class="callout-body">
+        <p>The methodology incorporates concepts and analytical techniques that exist in the public domain or are common across the financial planning, business valuation, and exit planning professions. The author does not claim authorship of these underlying concepts. The author claims authorship of the integration: the specific framework that organizes these concepts into a coherent methodology for business owner wealth planning delivered through the wealth advisor channel.</p>
+        <p>Where the EWP methodology and the EPI framework share concepts that exist in the public domain, no proprietary claim is made on either side. Where the EWP methodology uses constructs from the EPI framework specifically (the Wealth Gap calculation), attribution is appropriate and the construct is not claimed as EWP-original.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 06 · SEVEN PILLARS (FLIP CARDS)
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-white">
+  <div class="container">
+    <span class="section-label">The Seven Pillars Framework</span>
+    <h2 class="section-heading">Seven Pillars, Seven Specifications.</h2>
+    <p class="axis-display" style="font-family:var(--font-body);font-size:15px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);text-align:center;margin-bottom:24px;">BUSINESS &larr; YOU &rarr; FAMILY</p>
+
+    <p style="font-family:var(--font-heading);font-size:22px;font-weight:600;color:var(--teal-deep);text-align:center;max-width:880px;margin:0 auto 16px auto;line-height:1.4;">The pillars operate as bidirectionally connected analytical surfaces, not as sequential modules. Inputs and outputs flow between pillars continuously.</p>
+    <p style="font-size:16px;color:var(--text-body);text-align:center;max-width:880px;margin:0 auto 48px auto;line-height:1.7;">Each card flips to show the key analytical work, standard deliverables, and integration points.</p>
+
+    <!-- PILLAR 01 -->
+    <div class="pillar-row">
+      <div class="pillar-row-header">PILLAR 01 &middot; VALUES, VISION &amp; PURPOSE</div>
+      <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-face flip-card-front">
+            <div class="flip-card-eyebrow">Pillar 01 &middot; The Alignment Engine</div>
+            <h3 class="flip-card-title">Values, Vision &amp; Purpose</h3>
+            <div class="flip-card-body">
+              <p>To identify the business owner's core values and the reasons behind them, to draw out and articulate the owner's long-term vision across the dimensions of the methodology, and to narrow the vision into an 18-24 Month Purpose Statement that gives direction to the entire planning team.</p>
+              <p>The four-phase Values discovery exercise. The Why-Behind articulation. The Pillar Mapping. The Multi-Pillar Vision at three time horizons. The Owner Strategy Statement. The Team Alignment Meeting.</p>
+            </div>
+            <div class="flip-card-prompt">&rarr; Tap to see specification</div>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <div class="flip-card-eyebrow flip-card-eyebrow-back">Specification</div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Analytical Work</div>
+              <div class="flip-card-back-body">Four-phase Values discovery (Recognition, Selection, Why-Behind, Pillar Mapping). Multi-pillar vision at 18-24 months, 5 years, and 10+ years. Purpose Statement synthesis with five components (specific intent, lifestyle frame, what gets protected, what gets advanced, anchor values in service). Quarterly Action Steps. Owner Strategy Statement construction. Team Alignment Meeting design.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Standard Deliverables</div>
+              <div class="flip-card-back-body">The Values, Vision &amp; Purpose Workbook. The 18-24 Month Purpose Statement. The Quarterly Action Steps. The Owner Strategy Statement. The Team Alignment Meeting plan. The Affirmation Report.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Integration</div>
+              <div class="flip-card-back-body">Alignment engine for every other pillar. Anchor Values operate as checkpoints. Every recommendation from Pillars 02 through 07 is evaluated against the Anchor Values and the Purpose Statement.</div>
+            </div>
+            <div class="flip-card-back-cadence">Refresh: Values annually. Vision annually. Purpose Statement every 18-24 months. Action Steps quarterly.</div>
+            <div class="flip-card-prompt">&larr; Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILLAR 02 -->
+    <div class="pillar-row">
+      <div class="pillar-row-header">PILLAR 02 &middot; CASH FLOW &amp; BALANCE SHEET ALIGNMENT</div>
+      <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-face flip-card-front">
+            <div class="flip-card-eyebrow">Pillar 02 &middot; The Data Spine</div>
+            <h3 class="flip-card-title">Cash Flow &amp; Balance Sheet Alignment</h3>
+            <div class="flip-card-body">
+              <p>To establish the integrated financial picture across the business and the personal balance sheet, modeled as one coherent diagnostic, with the explicit objective of testing whether the personal plan the owner is committing to can be sustainably supported by the business's actual financial capacity.</p>
+              <p>The Economic Ownership calculation that distinguishes legal ownership from owner-effective control of the profit stream. The True Owner Draw reconciliation. The Concentration Ratio. Multi-year cash flow forecasting integrating planning recommendations.</p>
+            </div>
+            <div class="flip-card-prompt">&rarr; Tap to see specification</div>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <div class="flip-card-eyebrow flip-card-eyebrow-back">Specification</div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Analytical Work</div>
+              <div class="flip-card-back-body">Construction of the Eternal Wealth Snapshot. Calculation of the Eternal Wealth Guardrails across Liquidity, Growth, and Control axes. True Owner Draw reconciliation. Concentration Ratio. Economic Ownership calculation. Multi-year cash flow forecasting. Owner dependency assessment. Identification of stress points where the personal plan exceeds the business's sustainable capacity.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Standard Deliverables</div>
+              <div class="flip-card-back-body">The Eternal Wealth Snapshot. The Eternal Wealth Guardrails baseline. The True Owner Draw. The Concentration Ratio. The Economic Ownership reading. The multi-year integrated cash flow model. The sustainability analysis.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Integration</div>
+              <div class="flip-card-back-body">Diagnostic foundation for the methodology. The cash flow model is the sustainability test that every other pillar's recommendations must pass. Feeds Pillars 03, 05, 06, and 07. Bidirectional with Pillar 05.</div>
+            </div>
+            <div class="flip-card-back-cadence">Refresh: Quarterly for active relationships. Most-refreshed and most data-intensive pillar.</div>
+            <div class="flip-card-prompt">&larr; Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ECONOMIC OWNERSHIP CALLOUT -->
+    <div class="pillar-callout">
+      <h4 class="pillar-callout-title">The Economic Ownership Calculation</h4>
+      <div class="pillar-callout-body">
+        <p>Economic Ownership is an EWP-original Pillar 02 construct that quantifies the owner's effective ownership of the business profit stream after debt service. Legal ownership and economic ownership diverge when the business services debt, because debt providers claim a portion of the profit stream that the legal owner does not control.</p>
+        <div class="formula-block">E = O &times; (1 &minus; D / P)</div>
+        <p>Where: E = effective (economic) ownership percentage. O = owner's stated legal ownership interest (0 to 1). D = annual debt service payments (principal plus interest). P = annual EBITDA.</p>
+        <p>EBITDA is the pre-debt-service operating cash pool, the same denominator used in debt service coverage ratio analysis in lending. Principal repayment is included with interest because every dollar of EBITDA committed to any debt obligation reduces what the owner effectively controls.</p>
+      </div>
+      <table class="threshold-table">
+        <thead>
+          <tr><th>Value of E</th><th>Status</th><th>Plain Language</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>E &ge; 80%</td><td>Healthy</td><td>Owner controls most of the profit stream</td></tr>
+          <tr><td>50% &le; E &lt; 80%</td><td>Watch</td><td>Meaningfully leveraged; monitor trajectory</td></tr>
+          <tr><td>0% &le; E &lt; 50%</td><td>Concerning</td><td>More than half of profit committed to debt</td></tr>
+          <tr><td>E &lt; 0%</td><td>Distressed</td><td>Debt service exceeds operating profit</td></tr>
+        </tbody>
+      </table>
+      <div class="pillar-callout-body" style="margin-top:16px;">
+        <p>Scope limitation: Economic Ownership applies only to the Control guardrail display within the Eternal Wealth Guardrails framework. All other surfaces use traditional legal ownership.</p>
+      </div>
+    </div>
+
+    <!-- PILLAR 03 -->
+    <div class="pillar-row">
+      <div class="pillar-row-header">PILLAR 03 &middot; RISK &amp; INVESTMENT AUDIT</div>
+      <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-face flip-card-front">
+            <div class="flip-card-eyebrow">Pillar 03 &middot; Integrated Protection</div>
+            <h3 class="flip-card-title">Risk &amp; Investment Audit</h3>
+            <div class="flip-card-body">
+              <p>To establish the integrated protection picture for the family and the business simultaneously, evaluated against actual exposure rather than face amount, and to align the investment picture across personal and business surfaces. The pillar addresses concentration in the business as both a risk to be mitigated and an investment opportunity for diversification outward.</p>
+              <p>Personal and business life, disability, property, and liability coverage. Buy-Sell agreement review. Key person assessment. Executive carve-out planning. Investment portfolio alignment across all account types.</p>
+            </div>
+            <div class="flip-card-prompt">&rarr; Tap to see specification</div>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <div class="flip-card-eyebrow flip-card-eyebrow-back">Specification</div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Analytical Work</div>
+              <div class="flip-card-back-body">Document review of governing agreements (funding mechanisms, trigger language, valuation provisions, tax treatment). Funding gap calculation. Key person assessment. Executive carve-out evaluation. Investment portfolio review for alignment with values, vision, and Guardrails. Concentration analysis with diversification recommendations.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Specialist Routing</div>
+              <div class="flip-card-back-body">To business attorney: legal interpretation, document drafting. To CPA: tax treatment of protection structures. To insurance carriers: underwriting and policy issue. Owned by wealth advisor: the integrated planning view, gap analysis, alignment to values, recommendation sequencing, coordination.</div>
+            </div>
+            <div class="flip-card-back-cadence">Refresh: Annually, and after any change to governing documents, ownership, key personnel, or personal circumstances.</div>
+            <div class="flip-card-prompt">&larr; Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILLAR 04 -->
+    <div class="pillar-row">
+      <div class="pillar-row-header">PILLAR 04 &middot; LIFETIME TAX-EFFICIENT STRATEGY</div>
+      <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-face flip-card-front">
+            <div class="flip-card-eyebrow">Pillar 04 &middot; The Coordinative Function</div>
+            <h3 class="flip-card-title">Lifetime Tax-Efficient Strategy</h3>
+            <div class="flip-card-body">
+              <p>To establish a multi-decade strategy for tax-efficient planning across the integrated personal and business tax pictures, treating the two as one coherent strategy with explicit coordination through the CPA who owns the tax advice.</p>
+              <p>The three tax buckets (taxable, tax-deferred, tax-free) across personal and business surfaces. Business entity choice. Equity compensation events (RSU, ISO, NSO, 83(b), AMT). Qualified plan structures. Exit transaction tax treatment. Charitable and gifting strategies.</p>
+            </div>
+            <div class="flip-card-prompt">&rarr; Tap to see specification</div>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <div class="flip-card-eyebrow flip-card-eyebrow-back">Specification</div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Analytical Work</div>
+              <div class="flip-card-back-body">Multi-year tax-planning calendar with trigger dates. Asset location modeling across three tax buckets. Qualified plan contribution strategies including executive structures. Tax shape modeling of different exit structures (asset sale, stock sale, installment sale, ESOP, gift-to-family). Multi-year charitable and gifting strategy modeling.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Specialist Routing</div>
+              <div class="flip-card-back-body">To CPA: all actual tax advice, return preparation, authority representation, entity and election decisions. To business attorney: legal structure of entity choices, ESOP structuring. Owned by wealth advisor: the planning view, trigger calendar, modeling, CPA coordination, integration of tax into overall recommendations.</div>
+            </div>
+            <div class="flip-card-back-cadence">Refresh: Continuously through equity compensation calendar. Annually for broader view. Event-driven for trigger dates.</div>
+            <div class="flip-card-prompt">&larr; Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILLAR 05 -->
+    <div class="pillar-row">
+      <div class="pillar-row-header">PILLAR 05 &middot; BUSINESS VALUATION</div>
+      <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-face flip-card-front">
+            <div class="flip-card-eyebrow">Pillar 05 &middot; Planning Observer</div>
+            <h3 class="flip-card-title">Business Valuation</h3>
+            <div class="flip-card-body">
+              <p>To establish the current value of the business as it stands today, to read the business's economic position against industry-peer benchmarks for planning context, and to surface the planning implications of the business's value position for the integrated wealth picture.</p>
+              <p>The Margin and Multiplier Sequence diagnostic. Valuation across appropriate methods (asset-based, market-based, income-based). Operates as planning observer and integrator, not as operational consultant.</p>
+            </div>
+            <div class="flip-card-prompt">&rarr; Tap to see specification</div>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <div class="flip-card-eyebrow flip-card-eyebrow-back">Specification</div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Analytical Work</div>
+              <div class="flip-card-back-body">Application of valuation methods to produce a defensible range of current enterprise value. The Margin and Multiplier Sequence diagnostic. Reading of valuation outputs as inputs to cross-pillar constructs (Wealth Gap, Post-Exit Wealth Projection, Plan Success Stress-Test). Surfacing of planning implications without crossing into operator-level prescription.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Specialist Routing</div>
+              <div class="flip-card-back-body">To certified valuation specialist: formal valuations for legal or transaction purposes. To BizEquity or comparable platforms: standard valuation reads. To operating team: all operational improvement work. To M&amp;A advisor: transaction execution. Owned by wealth advisor: the planning view, the Margin and Multiplier Sequence, cross-pillar integration, coordination.</div>
+            </div>
+            <div class="flip-card-back-cadence">Refresh: Annually at minimum. More frequently approaching exit or during active value-building.</div>
+            <div class="flip-card-prompt">&larr; Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARGIN AND MULTIPLIER CALLOUT -->
+    <div class="pillar-callout">
+      <h4 class="pillar-callout-title">The Margin and Multiplier Sequence</h4>
+      <div class="pillar-callout-body">
+        <p>An EWP-original Pillar 05 diagnostic that reads the business's margin profile and value multipliers against NAICS code peer data to establish a grounded informational baseline for the planning conversation. The Sequence is not an operational KPI dashboard. It is a planning-perspective read that surfaces where the business sits relative to its industry peer set.</p>
+        <p><strong>What it reads:</strong> Gross margin, operating margin, EBITDA margin, net margin, all benchmarked against NAICS peer data. Implied valuation multipliers (EBITDA multiples, revenue multiples) benchmarked against NAICS peer transaction data. Trajectory of margins and multipliers across 3 to 5 years.</p>
+        <p><strong>What it produces:</strong> Planning observations expressed as informational signals: above peer, at peer, below peer, with directional notes. The observations route into the planning conversation, the Net-Worth Acceleration Map's business-side levers, and the Four-Dimension Exit Readiness Assessment's Business Readiness dimension. They do not route into an operational improvement plan owned by the wealth advisor.</p>
+      </div>
+    </div>
+
+    <!-- PILLAR 06 -->
+    <div class="pillar-row">
+      <div class="pillar-row-header">PILLAR 06 &middot; EXIT &amp; TRANSITION PLANNING</div>
+      <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-face flip-card-front">
+            <div class="flip-card-eyebrow">Pillar 06 &middot; Where Every Pillar Comes Due</div>
+            <h3 class="flip-card-title">Exit &amp; Transition Planning</h3>
+            <div class="flip-card-body">
+              <p>To establish the multi-year roadmap by which the owner exits the business on their terms, with explicit sequencing of value-building work, financial readiness, multi-pro coordination, and the post-exit life and lifestyle plan.</p>
+              <p>The Four-Dimension Exit Readiness Assessment. Exit strategy options review (third-party sale, family transfer, employee ownership, ESOP, gradual transition, partial liquidity event). The post-exit income and lifestyle plan. Multi-pro coordination across the deal team.</p>
+            </div>
+            <div class="flip-card-prompt">&rarr; Tap to see specification</div>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <div class="flip-card-eyebrow flip-card-eyebrow-back">Specification</div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Analytical Work</div>
+              <div class="flip-card-back-body">Four-Dimension Exit Readiness Assessment. Comparative analysis of exit methods against owner priorities. Multi-year exit roadmap with sequenced milestones. Multi-pro team coordination planning. Post-exit financial life modeling. Sensitivity analysis across business value, market conditions, and family dynamics.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Specialist Routing</div>
+              <div class="flip-card-back-body">To M&amp;A advisor: buyer identification, deal sourcing, negotiation. To M&amp;A attorney: transaction documents, legal due diligence. To CPA: transaction tax structuring. To valuation specialist: formal transaction valuations. Owned by wealth advisor: the integrated planning view, Four-Dimension Assessment, roadmap, multi-pro coordination, post-exit planning.</div>
+            </div>
+            <div class="flip-card-back-cadence">Refresh: Quarterly across the exit horizon. Event-driven for any change in circumstances, trajectory, or market conditions.</div>
+            <div class="flip-card-prompt">&larr; Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILLAR 07 -->
+    <div class="pillar-row">
+      <div class="pillar-row-header">PILLAR 07 &middot; LEGACY &amp; ESTATE PLANNING</div>
+      <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-face flip-card-front">
+            <div class="flip-card-eyebrow">Pillar 07 &middot; The Destination</div>
+            <h3 class="flip-card-title">Legacy &amp; Estate Planning</h3>
+            <div class="flip-card-body">
+              <p>To establish the multigenerational disposition of the wealth produced by the prior pillars, with explicit attention to surviving spouse provisions, generational transfer mechanisms, charitable structures, and the family governance that will carry the plan forward after the owner.</p>
+              <p>Wills, trusts, asset ownership review, generation-skipping planning, liquidity at death, charitable structures, gifting strategy, and family governance.</p>
+            </div>
+            <div class="flip-card-prompt">&rarr; Tap to see specification</div>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <div class="flip-card-eyebrow flip-card-eyebrow-back">Specification</div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Analytical Work</div>
+              <div class="flip-card-back-body">Document review for alignment with current intent. Waterfall Wealth &amp; Generation-skipping analysis. Liquidity needs analysis at death across the integrated picture. Charitable giving structure modeling. Gifting strategy across annual and lifetime windows. Family governance design including communication, education, and continuity.</div>
+            </div>
+            <div class="flip-card-back-section">
+              <div class="flip-card-back-label">Specialist Routing</div>
+              <div class="flip-card-back-body">To estate attorney: all documents, legal interpretation, filings. To CPA: estate, gift, and fiduciary tax filings. To trustee or family office services: fiduciary duties, administration. Owned by wealth advisor: integrated planning view, strategic intent coordination, values alignment, family governance design, multigenerational cadence.</div>
+            </div>
+            <div class="flip-card-back-cadence">Refresh: Every 3-5 years for legal documents. Annually for strategic review. Event-driven for family, tax law, or asset changes.</div>
+            <div class="flip-card-prompt">&larr; Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     QUOTE BREAK
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section quote-section">
+  <div class="quote-deco">&ldquo;</div>
+  <p class="quote-text">The pillars operate as bidirectionally connected analytical surfaces sharing a single underlying data picture of the integrated business and personal financials.</p>
+  <div class="quote-deco">&rdquo;</div>
+  <p class="quote-attribution">From the specification. Section 5.</p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 07 · CROSS-PILLAR CONSTRUCTS
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-label">Cross-Pillar Constructs</span>
+    <h2 class="section-heading">The architectural backbone of the integrated planning picture.</h2>
+    <p class="section-lead">The methodology includes a defined set of constructs that operate above any single pillar. These cross-pillar constructs draw inputs from multiple pillars and produce outputs that feed back across the methodology.</p>
+
+    <div class="construct-grid">
+
+      <div class="construct-card">
+        <div class="construct-card-eyebrow">EWP-Original &middot; Pillar 02 Output</div>
+        <h3 class="construct-card-title">The Eternal Wealth Snapshot</h3>
+        <div class="construct-card-body">
+          <p>The integrated balance sheet picture across the business and personal sides of the owner's wealth, at a point in time. The single-page artifact that captures the owner's financial position.</p>
+        </div>
+        <div class="construct-card-meta">
+          <span><strong>Inputs:</strong> Business balance sheet, personal balance sheet, all asset classes, ownership, debt, valuation</span>
+          <span><strong>Outputs to:</strong> Pillars 03, 05, 07, Wealth Gap, Net-Worth Acceleration Map</span>
+          <span><strong>Refresh:</strong> Quarterly</span>
+        </div>
+      </div>
+
+      <div class="construct-card">
+        <div class="construct-card-eyebrow">EWP-Original &middot; Pillar 02 Output</div>
+        <h3 class="construct-card-title">The Eternal Wealth Guardrails</h3>
+        <div class="construct-card-body">
+          <p>The cash flow and structural boundaries within which the integrated picture remains stable. Tri-axis tracking across Liquidity (distribution strategy, cash reserves, runway), Growth (revenue and EBITDA growth targets, market position), and Control (Economic Ownership, debt service limits, ownership maintenance).</p>
+          <p>Any pillar's recommendation that breaches a Guardrail triggers re-derivation. The Guardrails are the sustainability test for the entire methodology.</p>
+        </div>
+        <div class="construct-card-meta">
+          <span><strong>Inputs:</strong> Cash flow model, balance sheet ratios, debt schedule, Economic Ownership, distribution policy</span>
+          <span><strong>Outputs to:</strong> Every pillar (sustainability test)</span>
+          <span><strong>Refresh:</strong> Quarterly. Breach is a defined re-derivation trigger.</span>
+        </div>
+      </div>
+
+      <div class="construct-card">
+        <div class="construct-card-eyebrow">EWP-Original &middot; Pillar 01 Output</div>
+        <h3 class="construct-card-title">The 18-24 Month Purpose Statement</h3>
+        <div class="construct-card-body">
+          <p>The actionable middle ground between Anchor Values and Quarterly Action Steps. A multi-component statement covering the next 18 to 24 months using five components: specific intent, lifestyle frame, what gets protected, what gets advanced, and anchor values in service. The Owner Strategy Statement is the team-facing version.</p>
+        </div>
+        <div class="construct-card-meta">
+          <span><strong>Inputs:</strong> Pillar 01 Anchor Values, Multi-Pillar Vision, obstacles, resources</span>
+          <span><strong>Outputs to:</strong> Quarterly Action Steps, every pillar (direction-setting), Owner Strategy Statement, Team Alignment</span>
+          <span><strong>Refresh:</strong> Reviewed quarterly. Renewed every 18-24 months.</span>
+        </div>
+      </div>
+
+      <div class="construct-card">
+        <div class="construct-card-eyebrow">EWP-Original &middot; Cross-Pillar</div>
+        <h3 class="construct-card-title">The Net-Worth Acceleration Map</h3>
+        <div class="construct-card-body">
+          <p>The cross-pillar sequenced plan that closes the gap between the owner's current accumulated wealth and the wealth required to fund the post-exit life and legacy obligations. The Map operates simultaneously across two integrated levers: the owner-side compensation and accumulation lever (Pillars 02 and 04) and the business-side value lever (Pillars 02 and 05). The integration of the two levers is the construct's distinguishing feature.</p>
+        </div>
+        <div class="construct-card-meta">
+          <span><strong>Inputs:</strong> Wealth Gap, valuation, Margin and Multiplier Sequence, Economic Ownership, cash flow, tax strategy, compensation</span>
+          <span><strong>Outputs to:</strong> Post-Exit Wealth Projection, Quarterly Action Steps, each pillar where a lever is pulled</span>
+          <span><strong>Refresh:</strong> Quarterly. Re-derived on major input changes.</span>
+        </div>
+      </div>
+
+      <div class="construct-card">
+        <div class="construct-card-eyebrow">EWP-Original &middot; Cross-Pillar</div>
+        <h3 class="construct-card-title">The Post-Exit Wealth Projection</h3>
+        <div class="construct-card-body">
+          <p>The forward projection of the owner's total wealth position once business exit proceeds net of tax are included, modeled at projected value and timing. Not a gap calculation. A scenario projection. Contrasted with the Wealth Gap (EPI framework, conservative anchor calculated without assumption of business exit proceeds).</p>
+        </div>
+        <div class="construct-card-meta">
+          <span><strong>Inputs:</strong> Personal accumulation, business exit proceeds net of tax, post-exit lifestyle, legacy obligations</span>
+          <span><strong>Outputs to:</strong> Four-Dimension Exit Readiness (Financial), Net-Worth Acceleration Map, Plan Success Stress-Test</span>
+          <span><strong>Refresh:</strong> Quarterly during active exit planning. Annually otherwise.</span>
+        </div>
+      </div>
+
+      <div class="construct-card">
+        <div class="construct-card-eyebrow">EWP-Original &middot; Cross-Pillar</div>
+        <h3 class="construct-card-title">The Plan Success Stress-Test</h3>
+        <div class="construct-card-body">
+          <p>The cross-pillar simulation engine that produces the Probability of Plan Success. The engine integrates three inputs traditionally evaluated separately: the financial picture (from Pillar 02 and the Wealth Gap), the personal-emotional-mental readiness (from Pillar 01 outputs), and the business readiness including sellability (from Pillar 05). The integration of these three readiness dimensions in a single stress-tested output is the construct's distinguishing feature.</p>
+          <p>The headline output is the Probability of Plan Success, a distributional statistic produced across plausible alternative histories. Available continuously and re-run for each plan iteration.</p>
+        </div>
+        <div class="construct-card-meta">
+          <span><strong>Outputs to:</strong> Four-Dimension Exit Readiness (Financial), Net-Worth Acceleration Map, Pillar 01 Purpose Statement renewal</span>
+          <span><strong>Refresh:</strong> Continuously available. Recalibrated on input changes.</span>
+        </div>
+      </div>
+
+      <div class="construct-card">
+        <div class="construct-card-eyebrow">EWP-Original &middot; Pillar 06 Output</div>
+        <h3 class="construct-card-title">The Four-Dimension Exit Readiness Assessment</h3>
+        <div class="construct-card-body">
+          <p>The structured evaluation of the owner's readiness to exit, scored across four dimensions. The four-dimension structure is more comprehensive than the three-dimension industry standard.</p>
+          <p><strong>Dimension 1. Financial Readiness.</strong> Does the owner have the integrated financial picture to fund the post-exit life and legacy? Three readings: Wealth Gap (EPI), Post-Exit Wealth Projection (EWP), Plan Success Stress-Test (EWP).</p>
+          <p><strong>Dimension 2. Business Readiness.</strong> Is the business transferable, sellable, and at what value, on what timeline? Evaluated from the planning perspective.</p>
+          <p><strong>Dimension 3. Personal-Emotional-Mental Readiness.</strong> The EWP-distinctive piece. Evaluated against Pillar 01 outputs: do the Anchor Values find expression in the post-exit life, does the Vision align with a life after the business, is the owner's identity sufficiently distinct from the business.</p>
+          <p><strong>Dimension 4. Team and Coordination Readiness.</strong> Is the professional team aligned around the Owner Strategy Statement? Are the right specialists in place?</p>
+        </div>
+        <div class="construct-card-meta">
+          <span><strong>Outputs to:</strong> Exit roadmap, Net-Worth Acceleration Map, Quarterly Action Steps, Multi-Pro coordination</span>
+          <span><strong>Refresh:</strong> Annually minimum. Quarterly approaching exit. Event-driven.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 08 · DELIVERABLE ARCHITECTURE
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-white">
+  <div class="container">
+    <span class="section-label">Deliverable Architecture</span>
+    <h2 class="section-heading">The named artifacts the methodology produces.</h2>
+    <p class="section-lead">Each deliverable is the output of one or more pillars, tied to a specific planning question, and refreshed on a defined cadence. The deliverables are the language through which the methodology speaks to the client, to coordinating professionals, and to the firm whose name is on the plan.</p>
+
+    <div class="deliverable-list">
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Eternal Wealth Plan</div>
+        <div class="deliverable-desc">The integrating document that summarizes the seven pillars, the cross-pillar constructs, and the strategic direction. Refreshed annually.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Eternal Wealth Snapshot</div>
+        <div class="deliverable-desc">The integrated balance sheet picture. Produced by Pillar 02. Refreshed quarterly.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Eternal Wealth Guardrails</div>
+        <div class="deliverable-desc">The cash flow and structural boundaries. Produced by Pillar 02. Refreshed quarterly.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The 18-24 Month Purpose Statement</div>
+        <div class="deliverable-desc">The actionable direction for the entire team. Pillar 01 output. Reviewed quarterly, renewed every 18-24 months.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Owner Strategy Statement</div>
+        <div class="deliverable-desc">The team-facing version of the Purpose Statement. Refreshed on renewal or team composition change.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Affirmation Report</div>
+        <div class="deliverable-desc">Ties every recommendation across all seven pillars back to the Anchor Values and the long-term vision. Refreshed annually.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Values, Vision &amp; Purpose Workbook</div>
+        <div class="deliverable-desc">Pillar 01 working artifact capturing the full discovery process. Built during discovery, refreshed annually.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Net-Worth Acceleration Map</div>
+        <div class="deliverable-desc">Cross-pillar sequencing across personal-side and business-side levers. Refreshed quarterly.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Four-Dimension Exit Readiness Assessment</div>
+        <div class="deliverable-desc">Pillar 06 evaluation across financial, business, personal-emotional-mental, and team dimensions. Refreshed annually minimum.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Margin and Multiplier Sequence</div>
+        <div class="deliverable-desc">NAICS-peer-anchored diagnostic baseline. Pillar 05. Refreshed annually.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Economic Ownership Reading</div>
+        <div class="deliverable-desc">Pillar 02 calculation distinguishing legal and economic ownership. Refreshed quarterly.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--text-dark);text-align:center;margin:48px 0 24px 0;">Coordinating Professional Artifacts</h3>
+
+    <div class="deliverable-list">
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Tax Strategy Memo</div>
+        <div class="deliverable-desc">Produced by Pillar 04 for the CPA. Surfaces planning implications and trigger dates.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Legal Coordination Brief</div>
+        <div class="deliverable-desc">Produced by Pillars 07 and 03 for the attorney. Surfaces planning intent and the document gap analysis.</div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">The Multi-Pro Coordination Plan</div>
+        <div class="deliverable-desc">Produced by Pillar 06 across the exit horizon. Sequences the work of the full professional team through the transaction.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 09 · WEALTH ADVISOR DISCIPLINE
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-label">The Wealth-Advisor-Perspective Discipline</span>
+    <h2 class="section-heading">Observe. Diagnose. Inform. Route.</h2>
+    <p class="section-lead">The methodology operates from a defined professional posture: the wealth advisor observes, diagnoses, informs, and routes. The advisor does not perform specialist work in tax, legal, operational, or transaction execution domains.</p>
+
+    <div class="verbs-grid">
+      <div class="verb-card">
+        <h3 class="verb-card-title">Observe</h3>
+        <p class="verb-card-body">The advisor reads the integrated business and personal picture across all seven pillars. The reading is comprehensive (every pillar) and continuous (refreshed on the defined cadence).</p>
+      </div>
+      <div class="verb-card">
+        <h3 class="verb-card-title">Diagnose</h3>
+        <p class="verb-card-body">The advisor surfaces what the reading reveals. Gaps, opportunities, sustainability concerns, alignment issues, and trigger dates are made visible as planning artifacts.</p>
+      </div>
+      <div class="verb-card">
+        <h3 class="verb-card-title">Inform</h3>
+        <p class="verb-card-body">The advisor presents diagnostic outputs to the owner and to relevant specialists in the form each audience needs. The owner sees the integrated picture; specialists see the inputs for their work.</p>
+      </div>
+      <div class="verb-card">
+        <h3 class="verb-card-title">Route</h3>
+        <p class="verb-card-body">The advisor routes specialist work to the appropriate professionals through structural checkpoints specified in each pillar. Specialist outputs flow back through the system.</p>
+      </div>
+    </div>
+
+    <div class="not-do-callout">
+      <h4 class="not-do-callout-title">What the advisor does not do.</h4>
+      <ul>
+        <li>Provide tax advice. Surfacing tax-planning implications is methodology work. Providing tax advice is the CPA's work.</li>
+        <li>Draft legal documents. Reading documents for planning implications is methodology work. Drafting is the attorney's work.</li>
+        <li>Direct operational improvements at the business. Reading the economic position and surfacing observations is methodology work. Directing change is the owner and operating team's work.</li>
+        <li>Score the business against the EPI Five Value Drivers or the EPI Four Intangible Capitals. These are operator-level disciplines outside the wealth advisor channel.</li>
+        <li>Represent the owner in a transaction. Coordinating across the deal team is methodology work. Negotiating the deal is the M&amp;A advisor's and attorney's work.</li>
+        <li>Serve as fiduciary trustee, executor, or family office administrator unless explicitly engaged in a separate professional capacity.</li>
+      </ul>
+    </div>
+
+    <div class="callout" style="margin-top:40px;">
+      <div class="callout-label">Why the Discipline Matters</div>
+      <div class="callout-body">
+        <p><strong>Regulatory integrity.</strong> The methodology operates within the regulatory boundaries of the wealth advisor channel by design. Structural checkpoints route specialist work to professionals who hold the relevant licenses.</p>
+        <p><strong>Professional respect across the team.</strong> The advisor does not encroach on the CPA's, attorney's, or operating team's territory. The team operates from common direction without role conflict.</p>
+        <p><strong>Methodology coherence.</strong> The advisor's value comes from integration, not from specialist substitution. Holding the advisor in the advisor role protects the integration function the methodology is built around.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 10 · EXIT TEAM ALIGNMENT
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-white">
+  <div class="container">
+    <span class="section-label">Exit Team Alignment (ETA)</span>
+    <h2 class="section-heading">The coordination layer.</h2>
+    <p class="section-lead">Exit Team Alignment is the named coordination layer of the methodology. It describes the work by which the wealth advisor coordinates across the owner's professional team using the methodology's structural features. The methodology is exit-horizon-anchored: every pillar's work is oriented to the owner's eventual transition, regardless of how far off that transition is. The acronym ETA also carries the time-bound meaning of estimated time of arrival, reinforcing that the work is a continuous read against a planned destination.</p>
+
+    <div class="eta-list">
+      <div class="eta-item">
+        <div class="eta-item-name">The Owner Strategy Statement</div>
+        <div class="eta-item-desc">Pillar 01 deliverable. The team-facing articulation of the 18-24 Month Purpose Statement. The document the team aligns around.</div>
+      </div>
+      <div class="eta-item">
+        <div class="eta-item-name">The Team Alignment Meeting</div>
+        <div class="eta-item-desc">Pillar 01 cadence. Annual or more-frequent working session that brings the professional team into common direction. Structured agenda: opening, values check, pillar coordination, calendar alignment, open issues, cadence setting.</div>
+      </div>
+      <div class="eta-item">
+        <div class="eta-item-name">The Affirmation Report</div>
+        <div class="eta-item-desc">Pillar 01 deliverable. Ties every recommendation across all seven pillars back to the Anchor Values and the vision. The team uses it to validate alignment of any new recommendation.</div>
+      </div>
+      <div class="eta-item">
+        <div class="eta-item-name">The Routing Language</div>
+        <div class="eta-item-desc">The structural checkpoints in each pillar that name what the advisor does and what gets routed to which specialist.</div>
+      </div>
+      <div class="eta-item">
+        <div class="eta-item-name">The Multi-Pro Coordination Plan</div>
+        <div class="eta-item-desc">Pillar 06 deliverable. Sequences the work of the M&amp;A advisor, attorney, valuation specialist, CPA, wealth advisor, and family governance counsel through the exit transaction.</div>
+      </div>
+      <div class="eta-item">
+        <div class="eta-item-name">The Tax Strategy Memo &amp; Legal Coordination Brief</div>
+        <div class="eta-item-desc">Coordinating deliverables for the CPA (Pillar 04) and attorney (Pillars 07 and 03). Names the planning implications, trigger dates, and document gap analysis.</div>
+      </div>
+    </div>
+
+    <p style="font-size:16px;color:var(--text-body);text-align:center;max-width:880px;margin:40px auto 0 auto;line-height:1.7;">The wealth advisor is not the team's hierarchical lead. The advisor is the team's coordinating center. Each specialist owns their domain. The advisor owns the integration. ETA is a structural feature available to advisors who take it on; the Seven Pillars run and the planning picture stays integrated whether or not ETA is fully active.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 11 · INTEGRATION LOGIC
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-label">Integration Logic Across Pillars</span>
+    <h2 class="section-heading">One methodology, one data picture.</h2>
+    <p class="section-lead">The methodology operates as an integrated framework, not as seven separate planning exercises. The following principles govern how inputs and outputs flow between pillars and cross-pillar constructs.</p>
+
+    <div class="principle-list">
+      <div class="principle-item">
+        <h4 class="principle-item-title">One methodology, one data picture.</h4>
+        <p class="principle-item-body">All seven pillars and the cross-pillar constructs operate against a single shared data picture of the client. Updates propagate to every construct that depends on the changed input.</p>
+      </div>
+      <div class="principle-item">
+        <h4 class="principle-item-title">Sustainability is tested across pillars, not within them.</h4>
+        <p class="principle-item-body">No pillar's recommendation is considered final until it has been tested against the Eternal Wealth Guardrails in Pillar 02. A recommendation that breaks the integrated cash flow picture is not a viable recommendation.</p>
+      </div>
+      <div class="principle-item">
+        <h4 class="principle-item-title">Pillar 01 is the criterion.</h4>
+        <p class="principle-item-body">Every recommendation from every pillar is evaluated against the Anchor Values, the Multi-Pillar Vision, and the 18-24 Month Purpose Statement. Recommendations that conflict with the owner's stated direction are flagged and revised.</p>
+      </div>
+      <div class="principle-item">
+        <h4 class="principle-item-title">Tax efficiency runs through every pillar.</h4>
+        <p class="principle-item-body">Pillar 04 is not a sequential step. It is a coordinative function that touches every other pillar's recommendations. Every pillar's outputs are evaluated for tax-efficient implementation.</p>
+      </div>
+      <div class="principle-item">
+        <h4 class="principle-item-title">The cross-pillar constructs are the integrating outputs.</h4>
+        <p class="principle-item-body">The constructs specified in Section 6 are how the methodology produces integrated answers rather than parallel pillar outputs. Each construct draws from multiple pillars and routes back to multiple pillars.</p>
+      </div>
+      <div class="principle-item">
+        <h4 class="principle-item-title">Bidirectional flow between adjacent pillars.</h4>
+        <p class="principle-item-body">Pillar 02 and Pillar 05 share data continuously. Similar bidirectional flows operate between Pillars 02 and 04 (cash flow and tax), Pillars 03 and 07 (risk and legacy), and Pillars 05 and 06 (valuation and exit).</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-heading);font-size:24px;font-weight:700;color:var(--text-dark);text-align:center;margin:32px 0 24px 0;">The Dependency Map</h3>
+
+    <table class="dep-table">
+      <thead>
+        <tr><th>Pillar</th><th>Major Inputs From</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Pillar 01</td><td>No upstream dependencies. The foundational pillar. Outputs flow to every other pillar as direction and alignment criteria.</td></tr>
+        <tr><td>Pillar 02</td><td>Pillar 01 (vision, prioritization). Receives recommendation cash flows from Pillars 03, 04, 06, 07 for sustainability testing. Bidirectional with Pillar 05.</td></tr>
+        <tr><td>Pillar 03</td><td>Pillar 01 (vision, family map), Pillar 02 (integrated balance sheet, Snapshot), Pillar 05 (valuation for Buy-Sell funding).</td></tr>
+        <tr><td>Pillar 04</td><td>Pillars 01 (gifting intent), 02 (cash flow), 03 (asset location), 05 (entity and valuation), 06 (exit timing), 07 (gifting and charitable).</td></tr>
+        <tr><td>Pillar 05</td><td>Pillar 01 (vision, exit intent), Pillar 02 (business financials, Economic Ownership), Pillar 04 (entity structure). Outputs feed the Wealth Gap, Post-Exit Wealth Projection, Net-Worth Acceleration Map.</td></tr>
+        <tr><td>Pillar 06</td><td>Every prior pillar. The most integration-heavy pillar. The Four-Dimension Assessment pulls from Pillars 01, 02, 05, the Wealth Gap, Post-Exit Projection, and Plan Success Stress-Test.</td></tr>
+        <tr><td>Pillar 07</td><td>Pillar 01 (family map, legacy intent), Pillar 02 (integrated balance sheet), Pillar 03 (insurance as wealth replacement), Pillar 04 (tax-efficient transfer), Pillar 06 (post-exit asset base).</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:40px;">
+      <div class="callout-label">The Recalibration Loop</div>
+      <div class="callout-body">
+        <p>The methodology is not a one-time analysis. Each pillar refreshes on its defined cadence. When any pillar's inputs change materially, the dependency map drives propagation: downstream pillars are reviewed, cross-pillar constructs are recalculated, and the Plan Success Stress-Test is re-run.</p>
+        <p>The recalibration loop is what allows the methodology to remain accurate across a multi-decade arc. It is also what makes the methodology operationally complex: running seven pillars on continuous refresh cadence is the analytical work that the Contnuum platform substrate is designed to support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION 12 · AUTHORSHIP CLOSE
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section close-section">
+  <div class="container">
+    <div class="close-ornament">&mdash; &#10022; &mdash;</div>
+    <h2 class="close-heading">Authorship and date of record.</h2>
+    <p class="close-body">This document specifies the methodology developed and practiced by Becky Gustafson under the brand Eternal Wealth Partners as of the date of record stated below. The author is the sole originator and author of the framework described in this document, including the integration logic across pillars and the named EWP-original constructs as defined herein.</p>
+    <p class="close-body">The author has practiced under the methodology for approximately twenty years. The methodology has evolved continuously across that time. The specification in this document captures the framework as it exists at the date of record.</p>
+
+    <div class="close-author">
+      <div class="close-author-name">Rebecca (Becky) Gustafson</div>
+      <div class="close-author-creds">CFP, MSFP, AEP, CAP, ChFC, CLU, RICP, CASL, LUTCF, CLTC, CEPA</div>
+      <div class="close-author-title">Founder, Eternal Wealth Partners</div>
+      <div class="close-author-date">Date of record: June 08, 2026 &middot; Document version: v2.0</div>
+    </div>
+
+    <div class="close-changes">
+      <h4 class="close-changes-title">Material Differences from v1.0 (June 03, 2026)</h4>
+      <ul>
+        <li>The Eternal Wealth Gap construct was withdrawn. Structural overlap with the EPI Wealth Gap identified. Post-Exit Wealth Projection introduced as the EWP-original forward-looking construct.</li>
+        <li>Pillar 01 was rebuilt with the four-phase Values discovery, the Why-Behind work, the Pillar Mapping, the Multi-Pillar Vision, and the 18-24 Month Purpose Statement synthesis.</li>
+        <li>Pillar 03 personal-side inputs were fully enumerated (life insurance, disability, LTC, P&amp;C, all investment account types).</li>
+        <li>Pillar 05 was reframed. Value driver and transferability scoring withdrawn as EPI framework. EWP-original work concentrated in the Margin and Multiplier Sequence.</li>
+        <li>Pillar 06 added the Four-Dimension Exit Readiness Assessment with the Personal-Emotional-Mental Readiness dimension evaluated against Pillar 01 outputs.</li>
+        <li>Pillar 02 added the Economic Ownership construct with formula, edge cases, status thresholds, and scope limitation.</li>
+        <li>Cross-pillar constructs dedicated to Section 6. Plan Success Stress-Test added with engine architecture.</li>
+        <li>Wealth-advisor-perspective discipline named explicitly with the four verbs (observe, diagnose, inform, route).</li>
+        <li>Exit Team Alignment (ETA) named as the coordination layer with components, operation, and scope.</li>
+        <li>Attribution language held for IP counsel review before any commercial use or formal filing.</li>
+      </ul>
+    </div>
+
+    <p class="close-body" style="margin-top:48px;font-size:14px;color:var(--text-muted);">This document is the dated specification of the methodology described herein. It is intended to establish the methodology, the named constructs, the integration logic, the deliverable architecture, and the wealth-advisor-perspective discipline as authored work of the named author as of the date of record. It does not assign, transfer, or license any rights in the methodology. Use of the methodology beyond the author's individual practice is governed by separate agreements not contained in this document.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════════ -->
+<section class="section footer">
+  <span class="footer-brand">ETERNAL WEALTH PARTNERS &middot; ESTATE &amp; BUSINESS PLANNING</span>
+  <div class="footer-divider-sm"></div>
+  <p class="footer-contact">Becky Gustafson &mdash; CFP, MSFP, AEP, CAP, ChFC, CLU, RICP, CASL, LUTCF, CLTC, CEPA</p>
+  <p class="footer-tagline">"The framework for comprehensive business owner wealth planning."</p>
+  <div class="footer-divider-full"></div>
+  <p class="footer-disclaimer">This document is a methodology specification and authorship record. It is not a patent application, a license, a partnership agreement, or a commercial proposal. It does not provide financial, tax, or legal advice. The Contnuum platform substrate is a separate work with its own specification. All attribution to the Exit Planning Institute's frameworks is noted explicitly where applicable and is subject to IP counsel review.</p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     ACCESS GATE SCRIPT
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+(function(){
+  var gate = document.getElementById('access-gate');
+  var input = document.getElementById('access-input');
+  var error = document.getElementById('access-error');
+  if(sessionStorage.getItem('ewp-method-access')==='1857'){
+    gate.style.display='none';
+  }
+  input.addEventListener('input',function(){
+    if(input.value==='1857'){
+      sessionStorage.setItem('ewp-method-access','1857');
+      gate.style.transition='opacity 0.3s';
+      gate.style.opacity='0';
+      setTimeout(function(){gate.style.display='none';},300);
+    } else if(input.value.length===4){
+      error.style.opacity='1';
+      input.value='';
+      setTimeout(function(){error.style.opacity='0';},2000);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
